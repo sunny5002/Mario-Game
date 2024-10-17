@@ -10,7 +10,7 @@ Mario Game is a simple recreation of the classic Mario, developed with pure HTML
 ## Clone the Repository:
 
 
-git clone https://github.com/sunny5002/Mario-Game.git
+`git clone https://github.com/sunny5002/Mario-Game.git`
 After cloning, navigate to the project directory and open the index.html file in your browser to play.
 
 ## Download the ZIP File:
