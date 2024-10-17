@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <div class="game-bord">
+        <img src="./componets/img/clouds.png" class="nuvem">
+        <img src="componets/img/mario.gif" class="mario" >
+        <img src="componets/img/pipe.png" class="pipe">
+    </div>
+
+    <div class="game-over-screen" id="game-over">
+        <h1>Game Over</h1>
+        <button id="restart-btn">Restart</button>
+    </div>
+
+    <script>
+        const mario = document.querySelector('.mario');
+        const pipe = document.querySelector('.pipe');
+        const gameOverScreen = document.getElementById('game-over');
+        const restartBtn = document.getElementById('restart-btn');
+
+        gameOverScreen.style.display = 'none';
+
+        const pulo = () => {
+            mario.classList.add('pulo');
+
+            setTimeout(() => {
+                mario.classList.remove('pulo')
+            }, 500);
+        }
+
+        const loop = setInterval(() => {
+            const pipeposisao = pipe.offsetLeft;
+            const marioposisao = +window.getComputedStyle(mario).bottom.replace('px', ' ');
+
+            if (pipeposisao <= 120 && pipeposisao > 0 && marioposisao < 80) {
+                pipe.style.animation = 'none';
+                pipe.style.left = `${pipeposisao}px`;
+
+                mario.style.animation = 'none';
+                mario.style.bottom = `${marioposisao}px`;
+
+                mario.src = 'componets/img/game-over.png';
+                mario.style.width = '75px';
+                mario.style.marginLeft = '50px';
+
+                gameOverScreen.style.display = 'flex';
+
+                clearInterval(loop);
+            }
+        }, 10);
+
+        document.addEventListener("keydown", pulo);
+
+        restartBtn.addEventListener('click', () => {
+            window.location.reload();
+        });
+    </script>
+</body>
+</html>
